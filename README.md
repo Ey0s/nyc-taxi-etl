@@ -59,6 +59,60 @@ Re-running is safe: rows are deduplicated using `trip_key` (`ON CONFLICT DO NOTH
 
 ---
 
+## Screenshots / evidence (recommended)
+PostgreSQL can’t “take a screenshot”, but you can run queries and screenshot the results (pgAdmin or `psql`).
+
+1) Take the screenshot:
+
+- Select area (best): `Win + Shift + S`
+- Active window: `Alt + PrtScn`
+
+Tip: for `psql`, you can turn on a nicer output format:
+
+```sql
+\x on
+\pset pager off
+```
+
+---
+
+## Sample screenshots
+These screenshots are saved in `nyc-taxi-etl/screenshot/`:
+
+**Database connection**
+
+![Database connection](screenshot/database.png)
+
+**Sample rows (LIMIT 20)**
+
+![Sample 20 rows](screenshot/sample20rows.png)
+
+**Top pickup zones**
+
+![Top pickup zones by trip count](screenshot/Toppickupzones.png)
+
+**Average tips by hour**
+
+![Average tips by pickup hour](screenshot/Averagetips.png)
+
+**Daily trips trend**
+
+![Daily trips trend](screenshot/Dailytripstrend.png)
+
+**Top earning pickup zones**
+
+![Top earning pickup zones](screenshot/Topearningpickupzones.png)
+
+**Peak hours**
+
+![Peak hours](screenshot/Peakhours.png)
+
+**Miles per minute (efficiency)**
+
+![Miles per minute](screenshot/milesperminute.png)
+
+---
+
 ## Example analytics queries
 Top pickup zones by trip count:
 
