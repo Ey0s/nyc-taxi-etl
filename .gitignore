@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local outputs (optional)
+data/processed/
+data/raw/
+app
+PROJECT_REPORT.txt
+
