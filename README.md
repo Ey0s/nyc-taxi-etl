@@ -12,7 +12,7 @@ A ride-hailing marketplace wants to monitor operational performance (trip distan
 ---
 
 ## Dataset
-Default input file (already in this repo, **~20.9M rows**):
+Default input file (**~20.9M rows**):
 
 - `data/raw/fhvhv_tripdata_2026-01.parquet`
 
