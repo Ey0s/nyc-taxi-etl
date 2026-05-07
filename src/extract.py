@@ -13,7 +13,6 @@ class ExtractInfo:
     total_rows: int
     num_row_groups: int
 
-#get extract info
 def get_extract_info(path=DATA_PATH) -> ExtractInfo:
     if not path.exists():
         raise FileNotFoundError(
