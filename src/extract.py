@@ -1,18 +1,12 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 import pyarrow.parquet as pq
-
 from .config import BATCH_SIZE_ROWS, DATA_PATH, EXTRACT_COLUMNS
-
-
 @dataclass(frozen=True)
 class ExtractInfo:
     path: str
     total_rows: int
     num_row_groups: int
-
 
 def get_extract_info(path=DATA_PATH) -> ExtractInfo:
     if not path.exists():
@@ -27,7 +21,6 @@ def get_extract_info(path=DATA_PATH) -> ExtractInfo:
         total_rows=parquet.metadata.num_rows,
         num_row_groups=parquet.metadata.num_row_groups,
     )
-
 
 def extract_batches(
     path=DATA_PATH,
