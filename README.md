@@ -12,7 +12,7 @@ A ride-hailing marketplace wants to monitor operational performance (trip distan
 ---
 
 ## Dataset
-Default input file (already in this repo, **~20.9M rows**):
+Default input file (**~20.9M rows**):
 
 - `data/raw/fhvhv_tripdata_2026-01.parquet`
 
@@ -132,3 +132,17 @@ FROM etl.fact_fhvhv_trips
 GROUP BY 1
 ORDER BY 1;
 ```
+
+# Group 2 – Team Members
+
+members of Group 2:
+
+1. Ayele Yinesu
+2. Hana Shegawered
+3. Eyerusalem Habtegebreal
+4. Eyosyas Yoseph
+5. Bantalem Mitiku
+6. Yonas Tilahun
+7. Addisu Guche
+8. Eden Sebsbe
+
