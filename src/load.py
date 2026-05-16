@@ -1,15 +1,11 @@
 from __future__ import annotations
-
 import io
 import uuid
-
 import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.engine import URL
 from sqlalchemy.exc import OperationalError
-
 from .config import DB_CONFIG, FACT_TABLE, SCHEMA_SQL_PATH, STAGING_TABLE, TARGET_SCHEMA
-
 
 def get_engine():
     url = URL.create(
@@ -36,7 +32,7 @@ def get_engine():
 
     return engine
 
-
+# Executes schema.sql to create database schema, tables, and indexes
 def init_db(engine) -> None:
     sql_text = SCHEMA_SQL_PATH.read_text(encoding="utf-8")
     statements = [s.strip() for s in sql_text.split(";") if s.strip()]
@@ -44,29 +40,13 @@ def init_db(engine) -> None:
         for stmt in statements:
             conn.exec_driver_sql(stmt)
 
-
 def load_batch(engine, df: pd.DataFrame, batch_id: uuid.UUID) -> int:
     if df.empty:
         return 0
-
     df = df.copy()
     df["load_batch_id"] = str(batch_id)
 
-    stg_cols = [
-        "trip_key",
-        "hvfhs_license_num",
-        "pickup_datetime",
-        "dropoff_datetime",
-        "pu_location_id",
-        "do_location_id",
-        "trip_miles",
-        "tips",
-        "driver_pay",
-        "trip_duration_minutes",
-        "pickup_date",
-        "pickup_hour",
-        "load_batch_id",
-    ]
+    stg_cols = ["trip_key", "hvfhs_license_num", "pickup_datetime", "dropoff_datetime", "pu_location_id", "do_location_id", "trip_miles", "tips", "driver_pay", "trip_duration_minutes", "pickup_date", "pickup_hour", "load_batch_id"]
 
     buf = io.StringIO()
     df.to_csv(buf, index=False, header=False, sep="\t", na_rep="\\N", columns=stg_cols)
@@ -86,20 +66,7 @@ FROM STDIN WITH (FORMAT csv, DELIMITER E'\\t', NULL '\\N')
     finally:
         raw.close()
 
-    fact_cols = [
-        "trip_key",
-        "hvfhs_license_num",
-        "pickup_datetime",
-        "dropoff_datetime",
-        "pu_location_id",
-        "do_location_id",
-        "trip_miles",
-        "tips",
-        "driver_pay",
-        "trip_duration_minutes",
-        "pickup_date",
-        "pickup_hour",
-    ]
+    fact_cols = ["trip_key", "hvfhs_license_num", "pickup_datetime", "dropoff_datetime", "pu_location_id", "do_location_id", "trip_miles", "tips", "driver_pay", "trip_duration_minutes", "pickup_date", "pickup_hour"]
 
     with engine.begin() as conn:
         inserted = conn.exec_driver_sql(
@@ -117,5 +84,4 @@ ON CONFLICT (trip_key) DO NOTHING
             f"DELETE FROM {TARGET_SCHEMA}.{STAGING_TABLE} WHERE load_batch_id = %s",
             (str(batch_id),),
         )
-
     return int(inserted or 0)
