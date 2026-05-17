@@ -6,6 +6,5 @@ __pycache__/
 # Local outputs (optional)
 data/processed/
 data/raw/
-app
 PROJECT_REPORT.txt
 
