@@ -32,7 +32,6 @@ def get_engine():
 
     return engine
 
-# Executes schema.sql to create database schema, tables, and indexes
 def init_db(engine) -> None:
     sql_text = SCHEMA_SQL_PATH.read_text(encoding="utf-8")
     statements = [s.strip() for s in sql_text.split(";") if s.strip()]
