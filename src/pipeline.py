@@ -1,7 +1,7 @@
 from __future__ import annotations
 import argparse
 import uuid
-from tqdm import tqdm # For progress bars
+from tqdm import tqdm 
 from .config import DATA_PATH
 from .extract import extract_batches, get_extract_info
 from .load import get_engine, init_db, load_batch
@@ -18,7 +18,6 @@ def run_pipeline(init: bool) -> None:
     total_in = 0
     total_out = 0
     total_loaded = 0
-#process batches with progress bar
     with tqdm(total=info.total_rows, unit="rows") as bar:
         for i, df in enumerate(extract_batches(DATA_PATH), start=1):
             total_in += len(df)
