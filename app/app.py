@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from pathlib import Path
 import sys
 from typing import Iterable
-
 import pandas as pd
 import pyarrow.parquet as pq
 import streamlit as st
@@ -19,8 +17,6 @@ from src.config import DB_CONFIG, FACT_TABLE, PROJECT_ROOT, TARGET_SCHEMA
 st.set_page_config(page_title="NYC Taxi ETL Dashboard", layout="wide")
 
 MAX_JS_SAFE_INTEGER = 2**53 - 1
-
-
 @st.cache_resource
 def get_engine():
     url = URL.create(
