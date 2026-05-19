@@ -353,7 +353,6 @@ def main():
         st.error(f"Could not query PostgreSQL table {table_name}: {exc}")
         st.info("Make sure the ETL has been run and DB settings in .env are correct.")
         st.stop()
-
     kpis = get_kpis(table_name, where_clause).iloc[0]
     daily_metrics = get_daily_metrics(table_name, where_clause)
     hourly_metrics = get_hourly_metrics(table_name, where_clause)
@@ -361,7 +360,6 @@ def main():
     top_routes = get_top_routes(table_name, where_clause)
     quality_flags = get_quality_flags(table_name, where_clause).iloc[0]
     latest_trips = get_latest_trips(table_name)
-
     st.subheader("3) Business Insights (Post-ETL)")
 
     m1, m2, m3, m4 = st.columns(4)
