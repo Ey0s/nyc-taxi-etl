@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS etl;
 
--- Staging table: fast bulk loads via COPY
+-- Staging table: fast bulk loads via COPY than insert into
 CREATE TABLE IF NOT EXISTS etl.stg_fhvhv_trips (
     trip_key BIGINT,
     hvfhs_license_num VARCHAR(10),
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS etl.stg_fhvhv_trips (
 CREATE INDEX IF NOT EXISTS idx_stg_fhvhv_load_batch_id
     ON etl.stg_fhvhv_trips (load_batch_id);
 
--- Fact table analytics-ready trips (deduped on trip_key)
+-- Fact table analytics-ready trips for (deduped on trip_key)
 CREATE TABLE IF NOT EXISTS etl.fact_fhvhv_trips (
     trip_key BIGINT PRIMARY KEY,
     hvfhs_license_num VARCHAR(10) NOT NULL,
