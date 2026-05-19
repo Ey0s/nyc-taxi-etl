@@ -382,7 +382,6 @@ def main():
             "Data Quality",
         ]
     )
-
     with tab1:
         st.markdown("**Daily trend of trip demand**")
         if not daily_metrics.empty:
@@ -417,7 +416,6 @@ def main():
             st.dataframe(sanitize_for_streamlit(revenue_zones), use_container_width=True)
         else:
             st.info("No revenue-zone data in selected filters.")
-
     with tab4:
         trips_total = int(quality_flags["trips"] or 0)
         q1, q2, q3, q4 = st.columns(4)
