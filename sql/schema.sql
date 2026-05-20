@@ -1,6 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS etl;
 
--- Staging table: fast bulk loads via COPY than insert into
 CREATE TABLE IF NOT EXISTS etl.stg_fhvhv_trips (
     trip_key BIGINT,
     hvfhs_license_num VARCHAR(10),
