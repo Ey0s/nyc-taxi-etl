@@ -59,7 +59,7 @@ def query_scalar(sql: str) -> int:
         val = conn.exec_driver_sql(sql).scalar()
     return int(val or 0)
 
-
+#cache
 @st.cache_data
 def query_df(sql: str) -> pd.DataFrame:
     engine = get_engine()
@@ -94,7 +94,7 @@ def sanitize_for_streamlit(df: pd.DataFrame) -> pd.DataFrame:
                 out[col] = series.astype("string")
             continue
 
-        # Object columns that may contain Python integers (common from DB drivers).
+        # Object columns that contain Python integers (common from DB drivers).
         if pd.api.types.is_object_dtype(series):
             integer_like = non_null.map(lambda v: isinstance(v, int) and not isinstance(v, bool))
             if integer_like.all():
