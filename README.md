@@ -133,16 +133,5 @@ GROUP BY 1
 ORDER BY 1;
 ```
 
-# Group 2 – Team Members
 
-members of Group 2:
-
-1. Ayele Yinesu
-2. Hana Shegawered
-3. Eyerusalem Habtegebreal
-4. Eyosyas Yoseph
-5. Bantalem Mitiku
-6. Yonas Tilahun
-7. Addisu Guche
-8. Eden Sebsbe
 
